@@ -1,0 +1,21 @@
+body {
+    background: #a7cfdf; /* Old browsers */
+    background: -moz-linear-gradient(top,  #a7cfdf 0%, #23538a 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #a7cfdf 0%,#23538a 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #a7cfdf 0%,#23538a 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background-repeat: no-repeat;
+    height: 1000px;
+}
+
+.partialPage {
+    margin-top: 10%;
+}
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
+
+.text-center {
+    text-align: center;
+}

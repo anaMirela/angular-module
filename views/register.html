@@ -1,0 +1,39 @@
+<div  ng-controller="registerController" class="panel panel-default partialPage">
+    <div class="panel-heading">
+        <h2 class="panel-title text-center">Register form</h2>
+    </div>
+    <div class="panel-body">
+        <ng-form name="registerForm">
+             <div ng-show="validUser == 'fals'" class="row">
+                <div class="col-lg-6 col-centered">
+                    <div class="alert alert-danger" role="alert">Username already exists!</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-centered ">
+                    <div class="form-group" >
+                        <label>Username</label>
+                        <input name="user" type="text" class="form-control" ng-model="user.username" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-centered ">
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input name="pass" type="password" class="form-control" ng-model="user.password" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-2 col-centered">
+                    <div class="container">
+                        <button class="btn btn-default" ng-disabled="!registerForm.pass.$valid || !registerForm.user.$valid" ng-click="register(user)">Register</button>
+                    </div>
+                </div>
+            </div>
+        </ng-form>
+        <a href="/#/">Back to login</a>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div ng-controller="loginController" class="panel panel-default partialPage">
+    <div class="panel-heading">
+        <h2 class="panel-title text-center">Log into your account</h2>
+    </div>
+    <div class="panel-body">
+        <form name="loginForm" novalidate>
+            <div ng-show="validUser == 'fals'" class="row">
+                <div class="col-lg-6 col-centered">
+                    <div class="alert alert-danger" role="alert">Username or password are incorrect!</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-centered">
+                    <div class="form-group" >
+                        <label>Username</label>
+                        <input name="user" type="text" class="form-control" ng-model="user.username" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-centered">
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input name="pass" type="password" class="form-control" ng-model="user.password" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-2 col-centered">
+                    <div class="container">
+                        <button class="btn btn-default" ng-disabled="!loginForm.pass.$valid || !loginForm.user.$valid" ng-click="login(user)">Login</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <a href="/#/register">Register here if you don't have an account</a>
+    </div>
+</div>
