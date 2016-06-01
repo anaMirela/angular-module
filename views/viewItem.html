@@ -1,0 +1,20 @@
+<div ng-controller="viewItemController" class="panel panel-primary partialPage">
+    <div class="panel-heading">
+        <h1 class="panel-title">{{currentDeployment.name}}</h1>
+    </div>
+    <div class="panel-body">
+        
+        {{currentDeployment}}
+        <br/>
+        <div class="row">
+            <div class="col-lg-3 col-centered">
+                <button type="button" class="btn btn-info">
+                    <span class="glyphicon glyphicon-ok"></span> Build
+                </button>
+                <button type="button" class="btn btn-info">
+                    <span class="glyphicon glyphicon-play"></span> Deploy
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

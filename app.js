@@ -4,12 +4,15 @@ config(['$routeProvider', function($routeProvider){
     when('/',{templateUrl:'views/login.html', controller: 'loginController'}).
     when('/homepage', {templateUrl : 'views/homepage.html', controller: 'homePageController'}).
     when('/register', {templateUrl : 'views/register.html', controller: 'registerController'}).
+    when('/viewItem/:index', {templateUrl : 'views/viewItem.html', controller: 'viewItemController'}).
+    when('/createDeployment', {templateUrl : 'views/createDeployment.html', controller: 'createDeploymentController'}).
     otherwise({redirectTo:'/'})
 }]).
 factory('Data', function(){
    var data = {
         username: '',
-        password: ''
+        password: '',
+        deployments: ''
     };
 
     return {
@@ -24,8 +27,14 @@ factory('Data', function(){
         },
         setPassword: function (password) {
             data.password = password;
+        },
+        getDeployments: function () {
+            return data.deployments;
+        },
+        setDeployments: function(deployments) {
+            data.deployments = deployments;
         }
-    }; 
+    }
 }).
 controller('loginController',['$scope','$http', '$location', 'Data', function($scope, $http, $location, Data){
      $scope.login = function (user) {
@@ -42,7 +51,15 @@ controller('loginController',['$scope','$http', '$location', 'Data', function($s
      }
 }]).
 controller('homePageController',['$scope','$http', '$location', 'Data', function($scope, $http, $location, Data){
-     $scope.currentUser = Data.getUsername();
+    $scope.currentUser = Data.getUsername();
+    $http({url: '/deployment.json', method: 'GET'}).
+            success(function (data) {
+                $scope.deployments = data;
+                Data.setDeployments(data);
+            });
+    $scope.redirectToCreate = function() {
+        $location.path('/createDeployment');
+    }
 }]).
 controller('registerController',['$scope','$http', '$location', 'Data', function($scope, $http, $location, Data){
      $scope.register = function (user) {
@@ -58,4 +75,10 @@ controller('registerController',['$scope','$http', '$location', 'Data', function
                 }
             });
      }
+}]).
+controller('viewItemController', ['$scope', '$routeParams', 'Data', function($scope, $routeParams, Data){
+    $scope.currentDeployment = Data.getDeployments()[$routeParams.index];
+}]).
+controller('createDeploymentController', ['$scope', '$routeParams', 'Data', function($scope, $routeParams, Data){
+    
 }]);
