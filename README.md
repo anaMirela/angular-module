@@ -1,1 +1,1 @@
-# angular-module
+Modul angular pentru interfata proiectului de licenta.
