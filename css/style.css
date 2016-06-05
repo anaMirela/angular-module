@@ -24,3 +24,11 @@ body {
 .text-center {
     text-align: center;
 }
+
+.fieldLabel {
+    float: left;
+}
+
+.field {
+    float: left;
+}

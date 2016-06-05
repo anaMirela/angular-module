@@ -5,11 +5,73 @@
     </div>
     <div class="panel-body">
         
-        {{currentDeployment}}
-        <br/>
-        <div class="row">
+            <div class="row">
+                <div class="col-lg-2">
+                    <label class="fieldLabel">Name:</label>
+                </div>
+                <div class="col-lg-2">
+                    <p class="field">{{currentDeployment.name}}</p>
+                </div>
+            </div> <br/>
+        
+            <div class="row">
+                <div class="col-lg-2">
+                    <label class="fieldLabel">Last build:</label>
+                </div>
+                 <div class="col-lg-2">
+                     <p class="field">{{currentDeployment.lastBuildDate}}</p>
+                </div>
+            </div> <br/>
+        
+            <div class="row">
+                <div class="col-lg-2">
+                    <label class="fieldLabel"> Repository location: </label>
+                </div>
+                <div class="col-lg-2">
+                    <p class="field">{{currentDeployment.versioningSystem}}</p>
+                </div>
+            </div><br/>
+            
+            <div class="row">
+                <div class="col-lg-2">
+                    <label class="fieldLabel">Versioning system: </label>
+                </div>
+                <div class="col-lg-2">
+                    <p class="field">{{currentDeployment.versioningSystem}}</p>
+                </div>
+            </div><br/>
+        
+            <div class="row">
+                <div class="col-lg-2">
+                    <label class="fieldLabel"> Local path: </label>
+                </div>
+                <div class="col-lg-2">
+                    <p class="field">{{currentDeployment.localPath}}</p>
+                </div>
+            </div><br/>
+        
+            <div class="row">
+                <div class="col-lg-2">
+                    <label class="fieldLabel"> Server </label>
+                </div>
+                <div class="col-lg-2">
+                    <p class="field">{{currentDeployment.server}}</p>
+                </div>
+            </div><br/>
+            
+            <div class="row">
+                <div class="col-lg-2">
+                    <label class="fieldLabel"> Packaging: </label>
+                </div>
+                <div class="col-lg-2">
+                    <p class="field">{{currentDeployment.packaging}}</p>
+                </div>
+            </div><br/>
+        
+            <br/>
+            <div class="row">
             <div class="col-lg-3">
-                <button type="button" class="btn btn-info">
+                <button type="button" class="btn btn-info" ng-click="back()">
                     <span class="glyphicon glyphicon-arrow-left"></span> Back
                 </button>
             </div>

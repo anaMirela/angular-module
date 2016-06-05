@@ -86,19 +86,23 @@ controller('headerController', ['$scope', '$location', function($scope, $locatio
         $location.path('/signOut');
     }
 }]).
-controller('viewItemController', ['$scope', '$routeParams', 'Data', function($scope, $routeParams, Data){
+controller('viewItemController', ['$scope', '$routeParams', '$location', 'Data', function($scope, $routeParams, $location, Data){
     $scope.currentDeployment = Data.getDeployments()[$routeParams.index];
+    $scope.back = function() {
+        $location.path('/homepage');
+    }
 }]).
 controller('createDeploymentController', ['$scope', '$routeParams', '$location', '$http', 'Data', function($scope, $routeParams, $location, $http, Data){
     $scope.cancel = function() {
         $location.path('/homepage');
     }
     $scope.save = function(deployment) {
+         $scope.valid = "initial";
         deployment.username = Data.getUsername();
         $http({url: 'https://proiect-licenta.herokuapp.com/deployments/add/', method: 'POST', data:deployment}).
         success(function (data) {
             if (data.username == undefined || data.username == null) {
-                $scope.validUser = "fals";
+                $scope.valid = "fals";
             } else {
                 $location.path('/homepage');
             }

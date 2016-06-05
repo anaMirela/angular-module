@@ -4,7 +4,13 @@
         <h1 class="panel-title">Create new deployment pipeline</h1>
     </div>
     <div class="panel-body">
-        <form name="loginForm" novalidate>
+        <form name="createDeploymentForm" novalidate>
+            <div ng-show="valid == 'fals'" class="row">
+                <div class="col-lg-12 col">
+                    <div class="alert alert-danger" role="alert">There is an existing deployment configuration with this name! Please choose an unique name!</div>
+                </div>
+            </div>
+            
             <div class="row">
                 <div class="col-lg-6">
                     <label>Name</label>
@@ -15,7 +21,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <label>Versioning system: </label>
-                    <select ng-model="deployment.versioning">
+                    <select ng-model="deployment.versioningSystem">
                         <option>SVN</option>
                         <option>Git</option>
                     </select>
@@ -25,7 +31,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <label>Repository location: </label>
-                    <input name="repository" type="text" class="form-control" ng-model="deployment.repoLocation" required>
+                    <input name="repository" type="text" class="form-control" ng-model="deployment.repositoryLocation" required>
                 </div>
             </div><br/>
             
@@ -59,7 +65,7 @@
             
             <div class="row">
                 <div class="col-lg-3 col-centered">
-                    <button type="button" class="btn btn-info" ng-click="save(deployment)">
+                    <button type="button" class="btn btn-info" ng-click="save(deployment)" ng-disabled="!createDeploymentForm.$valid">
                         <span class="glyphicon glyphicon-ok"></span> Save
                     </button>
                     <button type="button" class="btn btn-info" ng-click="cancel()">
