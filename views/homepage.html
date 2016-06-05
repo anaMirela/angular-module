@@ -1,3 +1,4 @@
+<div class="panel header" ng-include="'/views/header.html'"></div>
 <div ng-controller="homePageController" class="panel panel-primary partialPage">
     <div class="panel-heading">
         <h1 class="panel-title">Welcome {{currentUser}}</h1>
@@ -13,9 +14,24 @@
                 </button>
             </div>
         </div>
-       
-        <div class="list-group">
-            <li class="list-group-item" ng-repeat="d in deployments"><a ng-href="/#/viewItem/{{$index}}/">{{d.name}}</a></li>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Last build</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="d in deployments">
+                            <td><a ng-href="/#/viewItem/{{$index}}/">{{d.name}}</a></td>
+                            <td>{{d.lastBuildDate}}</td>
+                        </tr>
+                    </tbody>    
+                </table>
+            </div>
         </div>
     </div>
 </div>

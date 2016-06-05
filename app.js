@@ -40,11 +40,16 @@ controller('loginController',['$scope','$http', '$location', 'Data', function($s
      $scope.login = function (user) {
        //  console(user);
           $scope.validUser = "initial";
-          $http({url: 'https://proiect-licenta.herokuapp.com/login/', method: 'POST', data:user}).
+          $http({url: 'https://proiect-licenta.herokuapp.com/user/login/', method: 'POST', data:user}).
             success(function (data) {
-                Data.setUsername(data.username);
-                $location.path('/homepage');
-            }). error(function() {
+              if (data.username == undefined || data.username == null) {
+                    $scope.validUser = "fals";
+                    $location.path('/');
+                } else {
+                    Data.setUsername(data.username);
+                    $location.path('/homepage');
+                }
+            }).error(function() {
                 $scope.validUser = "fals";
                 $location.path('/');
             });
@@ -52,7 +57,7 @@ controller('loginController',['$scope','$http', '$location', 'Data', function($s
 }]).
 controller('homePageController',['$scope','$http', '$location', 'Data', function($scope, $http, $location, Data){
     $scope.currentUser = Data.getUsername();
-    $http({url: '/deployment.json', method: 'GET'}).
+    $http({url: 'https://proiect-licenta.herokuapp.com/deployments/username/'+Data.getUsername(), method: 'GET'}).
             success(function (data) {
                 $scope.deployments = data;
                 Data.setDeployments(data);
@@ -64,7 +69,7 @@ controller('homePageController',['$scope','$http', '$location', 'Data', function
 controller('registerController',['$scope','$http', '$location', 'Data', function($scope, $http, $location, Data){
      $scope.register = function (user) {
           $scope.validUser = "initial";
-          $http({url: 'https://proiect-licenta.herokuapp.com/register/', method: 'POST', data:user}).
+          $http({url: 'https://proiect-licenta.herokuapp.com/user/add/', method: 'POST', data:user}).
             success(function (data) {
                 if (data.username == undefined || data.username == null) {
                     $scope.validUser = "fals";
@@ -75,6 +80,11 @@ controller('registerController',['$scope','$http', '$location', 'Data', function
                 }
             });
      }
+}]).
+controller('headerController', ['$scope', '$location', function($scope, $location){
+    $scope.signOut = function() {
+        $location.path('/test');
+    }
 }]).
 controller('viewItemController', ['$scope', '$routeParams', 'Data', function($scope, $routeParams, Data){
     $scope.currentDeployment = Data.getDeployments()[$routeParams.index];
