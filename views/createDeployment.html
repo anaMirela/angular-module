@@ -8,9 +8,10 @@
             <div class="row">
                 <div class="col-lg-6">
                     <label>Name</label>
-                    <input name="user" type="text" class="form-control" ng-model="deployment.name" required>
+                    <input name="name" type="text" class="form-control" ng-model="deployment.name" required>
                 </div>
-            </div>
+            </div> <br/>
+            
             <div class="row">
                 <div class="col-lg-6">
                     <label>Versioning system: </label>
@@ -19,31 +20,49 @@
                         <option>Git</option>
                     </select>
                 </div>
-            </div>
+            </div><br/>
             
             <div class="row">
                 <div class="col-lg-6">
                     <label>Repository location: </label>
-                    <input name="user" type="text" class="form-control" ng-model="deployment.repoLocation" required>
+                    <input name="repository" type="text" class="form-control" ng-model="deployment.repoLocation" required>
                 </div>
-            </div>
+            </div><br/>
             
-             <div class="row">
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Local path:</label>
+                    <input name="localPath" type="text" class="form-control" ng-model="deployment.localPath" required>
+                </div>
+            </div><br/>
+            
+            <div class="row">
                 <div class="col-lg-6">
                     <label>Server</label>
-                    <select ng-model="deployment.serverType">
+                    <select ng-model="deployment.server">
                         <option>Jboss</option>
                         <option>Tomcat</option>
                         <option>Jetty</option>
                     </select>
                 </div>
-            </div>
+            </div><br/>
+            
+             <div class="row">
+                <div class="col-lg-6">
+                    <label>Packaging</label>
+                    <select ng-model="deployment.packaging">
+                        <option>JAR</option>
+                        <option>WAR</option>
+                    </select>
+                </div>
+            </div><br/>
+            
             <div class="row">
                 <div class="col-lg-3 col-centered">
-                    <button type="button" class="btn btn-info">
+                    <button type="button" class="btn btn-info" ng-click="save(deployment)">
                         <span class="glyphicon glyphicon-ok"></span> Save
                     </button>
-                    <button type="button" class="btn btn-info">
+                    <button type="button" class="btn btn-info" ng-click="cancel()">
                         <span class="glyphicon glyphicon-remove"></span> Cancel
                     </button>
                 </div>
