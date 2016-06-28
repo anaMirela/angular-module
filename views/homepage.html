@@ -22,12 +22,26 @@
                         <tr>
                             <th>Name</th>
                             <th>Last build</th>
+                            <th>Result</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="d in deployments">
-                            <td><a ng-href="/#/viewItem/{{$index}}/">{{d.name}}</a></td>
+                            <td><a style="font-size:18px;" ng-href="/#/viewItem/{{$index}}/">{{d.name}}</a></td>
                             <td>{{d.lastBuildDate}}</td>
+                            <td>SUCCESS</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" ng-click="">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger" ng-click="">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
                         </tr>
                     </tbody>    
                 </table>

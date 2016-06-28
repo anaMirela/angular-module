@@ -6,6 +6,9 @@ config(['$routeProvider', function($routeProvider){
     when('/register', {templateUrl : 'views/register.html', controller: 'registerController'}).
     when('/viewItem/:index', {templateUrl : 'views/viewItem.html', controller: 'viewItemController'}).
     when('/createDeployment', {templateUrl : 'views/createDeployment.html', controller: 'createDeploymentController'}).
+    when('/history', {templateUrl : 'views/history.html'}).
+    when('/viewHistory', {templateUrl : 'views/viewHistory.html'}).
+    when('/schedule', {templateUrl : 'views/schedule.html'}).
     otherwise({redirectTo:'/'})
 }]).
 factory('Data', function(){
