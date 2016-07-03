@@ -31,7 +31,7 @@
                         <tr ng-repeat="d in deployments">
                             <td><a style="font-size:18px;" ng-href="/#/viewItem/{{$index}}/">{{d.name}}</a></td>
                             <td>{{d.lastBuildDate}}</td>
-                            <td>SUCCESS</td>
+                            <td>{{d.lastSuccess}}</td>
                             <td>
                                 <button type="button" class="btn btn-primary" ng-click="edit(d)">
                                     <span class="glyphicon glyphicon-pencil"></span>

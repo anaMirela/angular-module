@@ -1,5 +1,5 @@
 <div class="panel header" ng-include="'/views/header.html'"></div>
-<div ng-controller="viewItemController" class="panel panel-primary partialPage">
+<div ng-controller="viewHistoryController" class="panel panel-primary partialPage">
     <div class="panel-heading">
         <h1 class="panel-title">{{currentDeployment.name}}</h1>
     </div>
@@ -22,77 +22,21 @@
         
             <div class="row">
                 <div class="col-lg-3">
-                    <label class="fieldLabel">deploy-proiect2-productie</label>
+                    <label class="fieldLabel">{{currentHistory.configurationName}}</label>
                 </div>
                 <div class="col-lg-3">
-                    <label class="fieldLabel">24/06/2016 13:27</label>
+                    <label class="fieldLabel">{{currentHistory.buildDate}}</label>
                 </div>
                 <div class="col-lg-3">
-                    <label class="fieldLabel">SUCCES</label>
+                    <label class="fieldLabel">{{currentHistory.success}}</label>
                 </div>
                 <div class="col-lg-3">
-                    <label class="fieldLabel">4</label>
+                    <label class="fieldLabel">{{currentHistory.count}}</label>
                 </div>
             </div> <br/>
             <div class="row" style="height: 500px; overflow: auto;">
                 <pre style="background-color: black; color: white;">
-[INFO] Scanning for projects...
-[INFO]                                                                         
-[INFO] ------------------------------------------------------------------------
-[INFO] Building licenta Maven Webapp 1.0
-[INFO] ------------------------------------------------------------------------
-[INFO] 
-[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ licenta ---
-[INFO] Deleting /home/mirela/workspace2/heroku-repo/proiect-licenta/target
-[INFO] 
-[INFO] --- maven-resources-plugin:2.3:resources (default-resources) @ licenta ---
-[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
-[INFO] skip non existing resourceDirectory /home/mirela/workspace2/heroku-repo/proiect-licenta/src/main/resources
-[INFO] 
-[INFO] --- maven-compiler-plugin:3.3:compile (default-compile) @ licenta ---
-[INFO] Changes detected - recompiling the module!
-[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
-[INFO] Compiling 13 source files to /home/mirela/workspace2/heroku-repo/proiect-licenta/target/classes
-[INFO] 
-[INFO] --- maven-resources-plugin:2.3:testResources (default-testResources) @ licenta ---
-[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
-[INFO] skip non existing resourceDirectory /home/mirela/workspace2/heroku-repo/proiect-licenta/src/test/resources
-[INFO] 
-[INFO] --- maven-compiler-plugin:3.3:testCompile (default-testCompile) @ licenta ---
-[INFO] No sources to compile
-[INFO] 
-[INFO] --- maven-surefire-plugin:2.10:test (default-test) @ licenta ---
-[INFO] No tests to run.
-[INFO] Surefire report directory: /home/mirela/workspace2/heroku-repo/proiect-licenta/target/surefire-reports
-
--------------------------------------------------------
- T E S T S
--------------------------------------------------------
-
-Results :
-
-Tests run: 0, Failures: 0, Errors: 0, Skipped: 0
-
-[INFO] 
-[INFO] --- maven-war-plugin:2.1.1:war (default-war) @ licenta ---
-[INFO] Packaging webapp
-[INFO] Assembling webapp [licenta] in [/home/mirela/workspace2/heroku-repo/proiect-licenta/target/licenta]
-[INFO] Processing war project
-[INFO] Copying webapp resources [/home/mirela/workspace2/heroku-repo/proiect-licenta/src/main/webapp]
-[INFO] Webapp assembled in [440 msecs]
-[INFO] Building war: /home/mirela/workspace2/heroku-repo/proiect-licenta/target/licenta.war
-[INFO] WEB-INF/web.xml already added, skipping
-[INFO] 
-[INFO] --- maven-dependency-plugin:2.3:copy (default) @ licenta ---
-[INFO] Configured Artifact: org.eclipse.jetty:jetty-runner:9.3.3.v20150827:jar
-[INFO] Copying jetty-runner-9.3.3.v20150827.jar to /home/mirela/workspace2/heroku-repo/proiect-licenta/target/dependency/jetty-runner.jar
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time: 11.358s
-[INFO] Finished at: Tue Jun 28 16:16:21 EEST 2016
-[INFO] Final Memory: 20M/161M
-[INFO] ------------------------------------------------------------------------
+                    {{currentHistory.log}}
                 </pre>
             </div>
         

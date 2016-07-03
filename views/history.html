@@ -1,5 +1,5 @@
 <div class="panel header" ng-include="'/views/header.html'"></div>
-<div class="panel panel-primary partialPage">
+<div ng-controller="historyController" class="panel panel-primary partialPage">
     <div class="panel-heading">
         <h1 class="panel-title">Welcome {{currentUser}}</h1>
     </div>
@@ -16,41 +16,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><a style="font-size:18px;" ng-href="/#/viewHistory">deploy-proiect2-productie</a></td>
-                            <td>24/06/2016 13:27</td>
-                            <td>SUCCESS</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <td><a style="font-size:18px;" ng-href="/#/viewHistory">deploy-proiect2-productie</a></td>
-                            <td>24/06/2016 12:05</td>
-                            <td>FAIL</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <td><a style="font-size:18px;" ng-href="/#/viewHistory">deploy-proiect2-test</a></td>
-                            <td>23/06/2016 11:15</td>
-                            <td>SUCCESS</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td><a style="font-size:18px;" ng-href="/#/viewHistory">deploy-proiect2-test</a></td>
-                            <td>23/06/2016 09:05</td>
-                            <td>SUCCESS</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <td><a style="font-size:18px;" ng-href="/#/viewHistory">deploy-proiect1-test</a></td>
-                            <td>18/06/2016 14:05</td>
-                            <td>SUCCESS</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <td><a style="font-size:18px;" ng-href="/#/viewHistory">deploy-proiect1-test</a></td>
-                            <td>17/06/2016 16:23</td>
-                            <td>FAIL</td>
-                            <td>4</td>
+                        <tr ng-repeat="h in history">
+                            <td><a style="font-size:18px;" ng-href="/#/viewHistory/{{$index}}">{{h.configurationName}}</a></td>
+                            <td>{{h.buildDate}}</td>
+                            <td>{{h.success}}</td>
+                            <td>{{h.count}}</td>
                         </tr>
                     </tbody>    
                 </table>
