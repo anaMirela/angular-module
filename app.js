@@ -6,6 +6,7 @@ config(['$routeProvider', function($routeProvider){
     when('/register', {templateUrl : 'views/register.html', controller: 'registerController'}).
     when('/viewItem/:index', {templateUrl : 'views/viewItem.html', controller: 'viewItemController'}).
     when('/createDeployment', {templateUrl : 'views/createDeployment.html', controller: 'createDeploymentController'}).
+    when('/updateDeployment', {templateUrl : 'views/updateDeployment.html', controller: 'updateDeploymentController'}).
     when('/history', {templateUrl : 'views/history.html'}).
     when('/viewHistory', {templateUrl : 'views/viewHistory.html'}).
     when('/schedule', {templateUrl : 'views/schedule.html'}).
@@ -15,7 +16,8 @@ factory('Data', function(){
    var data = {
         username: '',
         password: '',
-        deployments: ''
+        deployments: '',
+        currentDepl: ''
     };
 
     return {
@@ -36,6 +38,12 @@ factory('Data', function(){
         },
         setDeployments: function(deployments) {
             data.deployments = deployments;
+        },
+        getCurrentDepl: function () {
+            return data.currentDepl;
+        },
+        setCurrentDepl: function(currentDepl) {
+            data.currentDepl = currentDepl;
         }
     }
 }).
@@ -58,7 +66,7 @@ controller('loginController',['$scope','$http', '$location', 'Data', function($s
             });
      }
 }]).
-controller('homePageController',['$scope','$http', '$location', 'Data', function($scope, $http, $location, Data){
+controller('homePageController',['$scope','$http', '$location', 'Data', '$route', function($scope, $http, $location, Data, $route){
     $scope.currentUser = Data.getUsername();
     $http({url: 'https://proiect-licenta.herokuapp.com/deployments/username/'+Data.getUsername(), method: 'GET'}).
             success(function (data) {
@@ -67,6 +75,21 @@ controller('homePageController',['$scope','$http', '$location', 'Data', function
             });
     $scope.redirectToCreate = function() {
         $location.path('/createDeployment');
+    }
+    
+    $scope.edit = function(d) {
+        Data.setCurrentDepl(d);
+        $location.path('/updateDeployment');
+    }
+    
+    $scope.delete = function (name) {
+        if (confirm('Are you sure you want to delete this item?')) {
+            $http({url: 'https://proiect-licenta.herokuapp.com/deployments/delete/' + name , method: 'DELETE'}).
+            success(function (data) {
+                $route.reload();
+                $.growl.notice({ message: "Deployment configuration deleted successfully!" });
+            });
+        }
     }
 }]).
 controller('registerController',['$scope','$http', '$location', 'Data', function($scope, $http, $location, Data){
@@ -100,7 +123,7 @@ controller('createDeploymentController', ['$scope', '$routeParams', '$location',
         $location.path('/homepage');
     }
     $scope.save = function(deployment) {
-         $scope.valid = "initial";
+        $scope.valid = "initial";
         deployment.username = Data.getUsername();
         $http({url: 'https://proiect-licenta.herokuapp.com/deployments/add/', method: 'POST', data:deployment}).
         success(function (data) {
@@ -109,6 +132,18 @@ controller('createDeploymentController', ['$scope', '$routeParams', '$location',
             } else {
                 $location.path('/homepage');
             }
+        });
+    }
+}]).
+controller('updateDeploymentController',  ['$scope', '$routeParams', '$location', 'Data', '$http', function($scope, $routeParams, $location, Data, $http){
+    $scope.deployment = Data.getCurrentDepl();
+    $scope.cancel = function() {
+        $location.path('/homepage');
+    }
+    $scope.update = function(deployment) {
+        $http({url: 'https://proiect-licenta.herokuapp.com/deployments/update/', method: 'POST', data:deployment}).
+        success(function (data) {
+            $location.path('/homepage');
         });
     }
 }]);

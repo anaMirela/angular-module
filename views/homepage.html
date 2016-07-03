@@ -33,12 +33,12 @@
                             <td>{{d.lastBuildDate}}</td>
                             <td>SUCCESS</td>
                             <td>
-                                <button type="button" class="btn btn-primary" ng-click="">
+                                <button type="button" class="btn btn-primary" ng-click="edit(d)">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                 </button>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-danger" ng-click="">
+                                <button type="button" class="btn btn-danger" ng-click="delete(d.name)">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </button>
                             </td>
