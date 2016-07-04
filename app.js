@@ -169,7 +169,7 @@ controller('historyController',  ['$scope', '$routeParams', '$location', 'Data',
 }]).
 controller('viewHistoryController', ['$scope', '$routeParams', '$location', 'Data', '$http', function($scope, $routeParams, $location, Data, $http){
     $scope.currentHistory = Data.getUserHistory()[$routeParams.index];
-    
+    $scope.fileLocation = $scope.currentHistory.pathToBuild.replace(new RegExp('/', 'g'), '$');//$scope.currentHistory.pathToBuild.replace('/', '%');
     $scope.back = function() {
         $location.path('/history');
     }
