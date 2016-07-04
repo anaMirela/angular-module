@@ -119,10 +119,16 @@ controller('headerController', ['$scope', '$location', function($scope, $locatio
         $location.path('/signOut');
     }
 }]).
-controller('viewItemController', ['$scope', '$routeParams', '$location', 'Data', function($scope, $routeParams, $location, Data){
+controller('viewItemController', ['$scope', '$routeParams', '$location', 'Data', '$http', function($scope, $routeParams, $location, Data, $http){
     $scope.currentDeployment = Data.getDeployments()[$routeParams.index];
     $scope.back = function() {
         $location.path('/homepage');
+    }
+    $scope.build = function() {
+        $http({url: 'http://localhost:9080/run/build', method: 'POST', data:$scope.currentDeployment}).
+        success(function (data) {
+            $.growl.notice({ message: "Build executed successfully!" }); 
+        });
     }
 }]).
 controller('createDeploymentController', ['$scope', '$routeParams', '$location', '$http', 'Data', function($scope, $routeParams, $location, $http, Data){
@@ -163,7 +169,15 @@ controller('historyController',  ['$scope', '$routeParams', '$location', 'Data',
 }]).
 controller('viewHistoryController', ['$scope', '$routeParams', '$location', 'Data', '$http', function($scope, $routeParams, $location, Data, $http){
     $scope.currentHistory = Data.getUserHistory()[$routeParams.index];
+    
     $scope.back = function() {
         $location.path('/history');
+    }
+    
+    $scope.download = function() {
+         $http({url: 'http://localhost:9080/run/download', method: 'GET'}).
+        success(function (data) {
+
+        });
     }
 }]);

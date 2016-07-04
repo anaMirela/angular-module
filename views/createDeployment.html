@@ -22,7 +22,7 @@
                 <div class="col-lg-6">
                     <label>Versioning system* </label>
                     <select ng-model="deployment.versioningSystem">
-                        <option>SVN</option>
+                        <option disabled>SVN</option>
                         <option>Git</option>
                     </select>
                 </div>
@@ -46,8 +46,8 @@
                 <div class="col-lg-6">
                     <label>Server*</label>
                     <select ng-model="deployment.server">
-                        <option>Jboss</option>
-                        <option>Tomcat</option>
+                        <option disabled>Jboss</option>
+                        <option disabled>Tomcat</option>
                         <option>Jetty</option>
                     </select>
                 </div>
@@ -58,7 +58,7 @@
                     <label>Packaging*</label>
                     <select ng-model="deployment.packaging">
                         <option>JAR</option>
-                        <option>WAR</option>
+                        <option disabled>WAR</option>
                     </select>
                 </div>
             </div><br/>
