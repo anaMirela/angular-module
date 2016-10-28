@@ -127,7 +127,18 @@ controller('viewItemController', ['$scope', '$routeParams', '$location', 'Data',
     $scope.build = function() {
         $http({url: 'http://localhost:9080/run/build', method: 'POST', data:$scope.currentDeployment}).
         success(function (data) {
-            $.growl.notice({ message: "Build executed successfully!" }); 
+            $.growl.notice({ message: "Build executed!" }); 
+        }).error(function(){
+            $.growl.error({ message: "Your request failed!" });
+        });
+    }
+    
+    $scope.run = function() {
+        $http({url: 'http://localhost:9080/run/build', method: 'POST', data:$scope.currentDeployment}).
+        success(function (data) {
+            $.growl.notice({ message: "Deploy executed!" }); 
+        }).error(function(){
+            $.growl.error({ message: "Your request failed!" }); 
         });
     }
 }]).
